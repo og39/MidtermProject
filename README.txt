@@ -13,7 +13,9 @@ Available Commands:
 
 1. 'addUser'
 
-    userinterface.php -u <user id> -p <password> -c addUser <first name> <last name> <phone number> <account type>
+    ***Only trainers can create new users ***
+
+    userinterface.php -u <user id> -p <password> -c addUser <new user id> <first name> <last name> <phone number> <account type> <new password>
   
     Phone number format:########## (only digits)
     Account Type is either 'user' or 'trainer' (lowercase)

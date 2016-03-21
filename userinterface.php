@@ -76,7 +76,13 @@ switch ($command)
   
   case 'addUser':
     $DBlogin = new DBlogin("workoutDB.ini");
-    $DBlogin->addUser($userID,$cArgs[1],$cArgs[2],$cArgs[3],$cArgs[4],$password);
+    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
+      {
+	echo "Only trainers can add users".PHP_EOL;
+	return;
+      }
+    $DBlogin->addUser($cArgs[1],$cArgs[2],$cArgs[3],$cArgs[4],$cArgs[5],$cArgs[6]);
     break;
   
   case 'createRoutine':
