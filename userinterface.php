@@ -76,18 +76,26 @@ switch ($command)
   
   case 'addUser':
     $DBlogin = new DBlogin("workoutDB.ini");
-    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
     if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
       {
 	echo "Only trainers can add users".PHP_EOL;
-	return;
+	break;
       }
     $DBlogin->addUser($cArgs[1],$cArgs[2],$cArgs[3],$cArgs[4],$cArgs[5],$cArgs[6]);
     break;
   
   case 'createRoutine':
     $DBlogin = new DBlogin('workoutDB.ini');
-    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
     if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
       {
 	echo "Only trainers can create routines".PHP_EOL;
@@ -99,7 +107,11 @@ switch ($command)
   
   case 'deleteRoutine':
     $DBlogin = new DBlogin('workoutDB.ini');
-    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
     if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
       {
 	echo "Only trainers can delete routines".PHP_EOL;
@@ -111,7 +123,11 @@ switch ($command)
   
   case 'trainerReport':
     $DBlogin = new DBlogin('workoutDB.ini');
-    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
     if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
       {
 	echo "Only trainers can view this report. Try viewing a 'progressReport'".PHP_EOL;
@@ -123,14 +139,22 @@ switch ($command)
   
   case 'progressReport':
     $DBlogin = new DBlogin('workoutDB.ini');
-    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
     $workoutFunc = new workoutFunc("workoutDB.ini");
     $workoutFunc->progressReport($userID,$password,$cArgs[1]);
     break;
   
   case 'addSet':
     $DBlogin = new DBlogin('workoutDB.ini');
-    $DBlogin->validateUser($userID,$password);
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
     $workoutFunc = new workoutFunc("workoutDB.ini");
     $workoutFunc->addSet($userID,$password,$cArgs[1],$cArgs[2],$cArgs[3],$cArgs[4],$cArgs[5],$cArgs[6],$cArgs[7]); 
     break;

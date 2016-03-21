@@ -51,7 +51,6 @@ class DBlogin
         {		
 		return true;
 	}
-	echo "login failed".PHP_EOL;
         return false;
    }
    
