@@ -50,10 +50,28 @@ Available Commands:
   
     userinterface.php -u <user id> -p <password> -c progressReport <routine name> 
 
-7. 'addSet'
+7. 'assignRoutine'
+   
+    userinterface.php -u <user id> -p <password> -c assignRoutine <user name> <rID> <Routine Name> <Routine Description>
+    
+    User Name is the person you are assigning a routine to.
+    
+    Routine ID(rID) is the number you add when entering new sets.
+    
+    Routine Name is the name entered for adding sets and checking progress.
+    
+    Routine Description tells you what exercises to do.
+
+8. 'myRoutines'
+
+    userinterface.php -u <user id> -p <password> -c myRoutines 
+
+    Will print out what routines you are assigned to.
+
+9. 'addSet'
   
-    userinterface.php -u <user id> -p <password> -c addSet <routine name> <date> <Exercise> <Set Number> <Weight> <Reps> <Body Part>
+    userinterface.php -u <user id> -p <password> -c addSet <routine name> <date> <Exercise> <Set Number> <Weight> <Reps> <Body Part> <rID>
     
     Date format: YYYY-MM-DD
     
-    
+  
