@@ -2,8 +2,12 @@ README
 
 To start:
 
-use file 'userinterface.php'
+user.sql will create the database and mysql account that accesses it.
 
+Workoutsdump.sql will create the tables and data.
+
+use file 'userinterface.php'
+ 
 the format for commands is:
 
 userinterface.php -u <user id> -p <password> -c <command arguements...>
