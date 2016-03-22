@@ -43,6 +43,32 @@ INSERT INTO `Users` VALUES ('bb1','Bruce','Banner',0,'user'),('hjs','Homer','Sim
 UNLOCK TABLES;
 
 --
+-- Table structure for table `assigndRT`
+--
+
+DROP TABLE IF EXISTS `assigndRT`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `assigndRT` (
+  `userID` varchar(10) NOT NULL DEFAULT '',
+  `rID` varchar(10) NOT NULL DEFAULT '',
+  `Routine_Name` varchar(10) DEFAULT NULL,
+  `Routine_Desc` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`userID`,`rID`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `assigndRT`
+--
+
+LOCK TABLES `assigndRT` WRITE;
+/*!40000 ALTER TABLE `assigndRT` DISABLE KEYS */;
+INSERT INTO `assigndRT` VALUES ('bb1','r1','routine1','bench_first'),('hjs','r1','routine1','chest 5x5 back 4x8  legs 4x8'),('hjs','r2','routine1','squat 5x5 incline 4x8  military 4x8'),('og39','r1','routine1','dbbench, barbell rows, leg curls'),('og39','r2','routine2','squat, inlcline, military');
+/*!40000 ALTER TABLE `assigndRT` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `passwds`
 --
 
@@ -82,6 +108,7 @@ CREATE TABLE `routine1` (
   `Reps` int(2) DEFAULT NULL,
   `BodyPart` varchar(10) DEFAULT NULL,
   `userID` varchar(10) NOT NULL DEFAULT '',
+  `rID` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`CurDate`,`Exercise`,`SetNum`,`userID`),
   KEY `userID` (`userID`),
   CONSTRAINT `routine1_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `Users` (`userID`)
@@ -94,7 +121,7 @@ CREATE TABLE `routine1` (
 
 LOCK TABLES `routine1` WRITE;
 /*!40000 ALTER TABLE `routine1` DISABLE KEYS */;
-INSERT INTO `routine1` VALUES ('2016-03-04','barbell_rows',1,155,8,'back','og39'),('2016-03-04','barbell_rows',2,155,8,'back','og39'),('2016-03-04','barbell_rows',3,155,8,'back','og39'),('2016-03-04','barbell_rows',4,155,8,'back','og39'),('2016-03-04','dbbench',1,50,5,'chest','hjs'),('2016-03-04','dbbench',1,100,5,'chest','og39'),('2016-03-04','dbbench',2,100,5,'chest','og39'),('2016-03-04','dbbench',3,100,5,'chest','og39'),('2016-03-04','dbbench',4,100,5,'chest','og39'),('2016-03-04','dbbench',5,100,5,'chest','og39'),('2016-03-04','leg_curls',1,120,8,'legs','og39'),('2016-03-04','leg_curls',2,120,8,'legs','og39'),('2016-03-04','leg_curls',3,120,8,'legs','og39'),('2016-03-04','leg_curls',4,120,8,'legs','og39'),('2016-03-10','barbell_rows',1,115,8,'back','bb1'),('2016-03-10','barbell_rows',2,115,8,'back','bb1'),('2016-03-10','barbell_rows',3,115,8,'back','bb1'),('2016-03-10','barbell_rows',4,115,8,'back','bb1'),('2016-03-10','dbbench',1,75,5,'chest','bb1'),('2016-03-10','dbbench',2,75,5,'chest','bb1'),('2016-03-10','dbbench',3,75,5,'chest','bb1'),('2016-03-10','dbbench',4,75,5,'chest','bb1'),('2016-03-10','dbbench',5,75,5,'chest','bb1'),('2016-03-10','leg_curls',1,80,8,'legs','bb1'),('2016-03-10','leg_curls',2,80,8,'legs','bb1'),('2016-03-10','leg_curls',3,80,8,'legs','bb1'),('2016-03-10','leg_curls',4,80,8,'legs','bb1');
+INSERT INTO `routine1` VALUES ('2016-03-04','barbell_rows',1,155,8,'back','og39','r1'),('2016-03-04','barbell_rows',2,155,8,'back','og39','r1'),('2016-03-04','barbell_rows',3,155,8,'back','og39','r1'),('2016-03-04','barbell_rows',4,155,8,'back','og39','r1'),('2016-03-04','dbbench',1,50,5,'chest','hjs','r1'),('2016-03-04','dbbench',1,100,5,'chest','og39','r1'),('2016-03-04','dbbench',2,50,5,'chest','hjs','r1'),('2016-03-04','dbbench',2,100,5,'chest','og39','r1'),('2016-03-04','dbbench',3,100,5,'chest','og39','r1'),('2016-03-04','dbbench',4,100,5,'chest','og39','r1'),('2016-03-04','dbbench',5,100,5,'chest','og39','r1'),('2016-03-04','leg_curls',1,120,8,'legs','og39','r1'),('2016-03-04','leg_curls',2,120,8,'legs','og39','r1'),('2016-03-04','leg_curls',3,120,8,'legs','og39','r1'),('2016-03-04','leg_curls',4,120,8,'legs','og39','r1'),('2016-03-10','barbell_rows',1,115,8,'back','bb1','r1'),('2016-03-10','barbell_rows',2,115,8,'back','bb1','r1'),('2016-03-10','barbell_rows',3,115,8,'back','bb1','r1'),('2016-03-10','barbell_rows',4,115,8,'back','bb1','r1'),('2016-03-10','dbbench',1,75,5,'chest','bb1','r1'),('2016-03-10','dbbench',2,75,5,'chest','bb1','r1'),('2016-03-10','dbbench',3,75,5,'chest','bb1','r1'),('2016-03-10','dbbench',4,75,5,'chest','bb1','r1'),('2016-03-10','dbbench',5,75,5,'chest','bb1','r1'),('2016-03-10','leg_curls',1,80,8,'legs','bb1','r1'),('2016-03-10','leg_curls',2,80,8,'legs','bb1','r1'),('2016-03-10','leg_curls',3,80,8,'legs','bb1','r1'),('2016-03-10','leg_curls',4,80,8,'legs','bb1','r1'),('2016-03-21','barbell_rows',1,155,8,'back','og39','r1');
 /*!40000 ALTER TABLE `routine1` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +134,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-20 22:48:44
+-- Dump completed on 2016-03-21 23:44:35
