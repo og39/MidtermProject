@@ -172,9 +172,25 @@ switch ($command)
 	return;
       }
     $workoutFunc = new workoutFunc("workoutDB.ini");
-    $workoutFunc->assignRoutine($userID,$password,$cArgs[1],$cArgs[2],$cArgs[3],$cArgs[4]); 
+    $workoutFunc->assignRoutine($userID,$password,$cArgs[1],$cArgs[2]); 
     break;      
-  
+
+  case 'designRoutine':
+    $DBlogin = new DBlogin('workoutDB.ini');
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
+    if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
+      {
+	echo "Only trainers can design routines".PHP_EOL;
+	return;
+      }
+    $workoutFunc = new workoutFunc("workoutDB.ini");
+    $workoutFunc->designRoutine($userID,$password,$cArgs[1],$cArgs[2],$cArgs[3]); 
+    break;
+   
   case 'myRoutines':
     $DBlogin = new DBlogin('workoutDB.ini');
     if (($DBlogin->validateUser($userID,$password)) === false)

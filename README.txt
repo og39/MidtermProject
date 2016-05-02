@@ -52,23 +52,29 @@ Available Commands:
 
 7. 'assignRoutine'
    
-    userinterface.php -u <user id> -p <password> -c assignRoutine <user name> <rID> <Routine Name> <Routine Description>
+    userinterface.php -u <user id> -p <password> -c assignRoutine <user name> <rID>
     
     User Name is the person you are assigning a routine to.
     
     Routine ID(rID) is the number you add when entering new sets.
-    
-    Routine Name is the name entered for adding sets and checking progress.
-    
-    Routine Description tells you what exercises to do.
 
-8. 'myRoutines'
+8. 'designRoutine'
+   
+    userinterface.php -u <user id> -p <password> -c designRoutines <rouintine ID> <routine name> <routine description>	
+
+   Routine ID  is thte ID given to the new routine.
+   
+   Routine name if the name you are giving the new routine.
+
+   Routine Description details the routine.
+
+9. 'myRoutines'
 
     userinterface.php -u <user id> -p <password> -c myRoutines 
 
     Will print out what routines you are assigned to.
 
-9. 'addSet'
+10. 'addSet'
   
     userinterface.php -u <user id> -p <password> -c addSet <routine name> <date> <Exercise> <Set Number> <Weight> <Reps> <Body Part> <rID>
     

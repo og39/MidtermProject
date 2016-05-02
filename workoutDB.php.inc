@@ -121,28 +121,43 @@ class workoutFunc
 	}
   }
   
-  public function assignRoutine($userID,$passwd,$username,$rID,$routineName,$routineDesc)
+  public function assignRoutine($userID,$passwd,$username,$rID)
   {
       $userID = $this->db->real_escape_string($userID);
       $username = $this->db->real_escape_string($username);
       $rID = $this->db->real_escape_string($rID);
-      $routineName = $this->db->real_escape_string($routineName);
-      $routineDesc = $this->db->real_escape_string($routineDesc);
       
-      $query = "insert into assigndRT (userID,rID,Routine_Name,Routine_Desc) values ('$username','$rID','$routineName','$routineDesc');";
+      $query = "insert into assigndRT (userID,rID) values ('$username','$rID');";
       $results = $this->db->query($query);
     	if ($this->db->errno > 0)
 	{
 	    echo __FILE__.":".__LINE__."DB error: ".$this->db->error.PHP_EOL;
 	}
+
 	echo "Routine assigned".PHP_EOL;      
   }
   
-  
+  public function designRoutine($userID,$passwd,$rID,$routineName,$routineDesc)
+  {
+      $userID = $this->db->real_escape_string($userID);
+      $rID = $this->db->real_escape_string($rID);
+      $routineName = $this->db->real_escape_string($routineName);
+      $routineDesc = $this->db->real_escape_string($routineDesc);
+      
+      $query = "insert into routineDesc (rID, Routine_Name, Routine_Desc ) values ('$rID','$routineName','$routineDesc');";
+      $results = $this->db->query($query);
+    	if ($this->db->errno > 0)
+	{
+	    echo __FILE__.":".__LINE__."DB error: ".$this->db->error.PHP_EOL;
+	}
+
+	echo "Routine designed".PHP_EOL;      
+  }  
+
   public function myRoutines($userID, $passwd)
   {
       $userID = $this->db->real_escape_string($userID);
-            $query = "select * from assigndRT where userID = '$userID';";
+            $query = "select * from assigndRT as a join routineDesc as r on a.rID = r.rID where userID = '$userID'";
      $results = $this->db->query($query);
     	if ($this->db->errno > 0)
 	{
@@ -150,7 +165,7 @@ class workoutFunc
 	}
      	while ($row = $results->fetch_assoc())
 	{ 
-	    echo $row['userID']." ".$row['rID']." ".$row['Routine_Name']." ".$row['Routine_Desc'].PHP_EOL;	
+	    echo $row['Routine_Name']." ".$row['rID']." ".$row['Routine_Desc'].PHP_EOL;	
 	}
   }
 }
