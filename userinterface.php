@@ -201,6 +201,22 @@ switch ($command)
     $workoutFunc = new workoutFunc("workoutDB.ini");
     $workoutFunc->myRoutines($userID,$password); 
     break; 
+
+    case 'exportUsers':
+    $DBlogin = new DBlogin('workoutDB.ini');
+    if (($DBlogin->validateUser($userID,$password)) === false)
+       {
+         echo "Login failed".PHP_EOL;
+	 exit(0);
+       }
+    if (($DBlogin->checkUserPrivilegeLevel($userID))<1)
+      {
+	echo "Only trainers can export users".PHP_EOL;
+	return;
+      }
+    $workoutFunc = new workoutFunc("workoutDB.ini");
+    $workoutFunc->exportUsers($userID,$password); 
+    break;
 }
 
 ?>

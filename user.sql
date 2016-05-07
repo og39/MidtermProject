@@ -1,5 +1,5 @@
-drop database if exists Workouts;
-create database Workouts;
-create user 'WorkoutAdmin'@'localhost' identified by "midterm";
-grant all privileges on Workouts.* to 'WorkoutAdmin'@'localhost';
+drop database if exists Workouts2;
+create database Workouts2;
+create user 'Admin'@'localhost' identified by "final";
+grant all privileges on Workouts2.* to 'Admin'@'localhost';
 flush privileges;

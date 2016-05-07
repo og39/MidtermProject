@@ -80,4 +80,9 @@ Available Commands:
     
     Date format: YYYY-MM-DD
     
-  
+11. 'exportUsers'
+
+    userinterface.php -u <user id> -p <password> -c exportUsers
+
+    Sends json file of Users table to mongo database.
+     

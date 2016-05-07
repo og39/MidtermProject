@@ -168,6 +168,32 @@ class workoutFunc
 	    echo $row['Routine_Name']." ".$row['rID']." ".$row['Routine_Desc'].PHP_EOL;	
 	}
   }
+
+  public function exportUsers($userID, $passwd)
+  {
+    $userID = $this->db->real_escape_string($userID);
+    
+    $json_data=array();
+    $query = "select * from Users"; 
+    $results = $this->db->query($query);
+    	if ($this->db->errno > 0)
+	{
+	    echo __FILE__.":".__LINE__."DB error: ".$this->db->error.PHP_EOL;
+	}
+    $index=0;
+    while ($row =$results->fetch_assoc())
+    {
+      $json_data[$index]=$row;
+      $index++;
+    }
+    echo json_encode($json_data).PHP_EOL;
+    $fp = fopen('Users.json','w');
+    fwrite($fp, json_encode($json_data));
+    fclose($fp);
+   
+   exec("mongoimport -h ds015892.mlab.com:15892 -d it635 -c Users -u it635 -p boom --jsonArray --file Users.json");
+    	
+  }
 }
 
 
